@@ -95,16 +95,9 @@ namespace Homework_number_42
 
             int yearProduction = GetNumber("Укажите го выпуска:");
 
-            if (TryGetBook(out Book book, title) == false)
-            {
-                _books.Add(new Book(title, author, yearProduction));
+            _books.Add(new Book(title, author, yearProduction));
 
-                ShowMessage("Книга успешно добавлена");
-            }
-            else
-            {
-                ShowMessage("Книга с таким название уже есть в хранилище!", ConsoleColor.Red);
-            }
+            ShowMessage("Книга успешно добавлена");
         }
 
         public void Remove()
@@ -116,7 +109,7 @@ namespace Homework_number_42
             {
                 _books.Remove(book);
 
-                ShowMessage("Пользователь успешно удалён");
+                ShowMessage("Книга успешно удалена");
             }
         }
 
@@ -168,6 +161,8 @@ namespace Homework_number_42
                     return true;
                 }
             }
+
+            ShowMessage("Такой книги нет в базе!");
 
             return false;
         }
