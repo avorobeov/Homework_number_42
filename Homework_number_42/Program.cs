@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,7 +24,15 @@ namespace Homework_number_42
 
             while (isExit == false)
             {
-                ShowMenu();
+                Console.WriteLine("Меню\n" +
+                           "\nДоступные команды\n\n" +
+                           $"1) Для добавления книги в хранилище нажмите: {СommandAdd}\n\n" +
+                           $"2) Для удаление книги в хранилище нажмите: {CommandRemove}\n\n" +
+                           $"3) Что бы показать весь список книг нажмите: {CommandShowBooks}\n\n" +
+                           $"4) Что бы показать список книг по году выпуска нажмите: {CommandShowBooksToYear}\n\n" +
+                           $"5) Что бы показать список книг по одному автору нажмите: {CommandShowBooksToAuthor}\n\n" +
+                           $"6) Удалить игрока ведите {CommandExit}\n\n" +
+                           $"Укажите команду: ");
 
                 userInput = Console.ReadLine();
 
@@ -59,19 +68,6 @@ namespace Homework_number_42
                 }
             }
         }
-
-        static void ShowMenu()
-        {
-            Console.WriteLine("Меню\n" +
-                           "\nДоступные команды\n\n" +
-                           $"1) Для добавления книги в хранилище нажмите: {СommandAdd}\n\n" +
-                           $"2) Для удаление книги в хранилище нажмите: {CommandRemove}\n\n" +
-                           $"3) Что бы показать весь список книг нажмите: {CommandShowBooks}\n\n" +
-                           $"4) Что бы показать список книг по году выпуска нажмите: {CommandShowBooksToYear}\n\n" +
-                           $"5) Что бы показать список книг по одному автору нажмите: {CommandShowBooksToAuthor}\n\n" +
-                           $"6) Удалить игрока ведите {CommandExit}\n\n" +
-                           $"Укажите команду: ");
-        }
     }
 
     class Book
@@ -102,7 +98,7 @@ namespace Homework_number_42
 
             int yearProduction = GetNumber("Укажите го выпуска:");
 
-            if (ContainsId(title) == false)
+            if (TryGetBook(out Book book, title) == false)
             {
                 _books.Add(new Book(title, author, yearProduction));
 
@@ -116,12 +112,10 @@ namespace Homework_number_42
 
         public void Remove()
         {
-            Book book;
-
             ShowMessage("Укажите название книги для её удаления: ", ConsoleColor.Blue);
             string title = Console.ReadLine();
 
-            if (TryGetBook(out book, title) == true)
+            if (TryGetBook(out Book book, title) == true)
             {
                 _books.Remove(book);
 
@@ -139,7 +133,7 @@ namespace Homework_number_42
 
         public void ShowBooksToYear()
         {
-            int yearProduction = GetNumber("Укажите го выпуска:");
+            int yearProduction = GetNumber("Укажите год выпуска:");
 
             for (int i = 0; i < _books.Count; i++)
             {
@@ -164,7 +158,7 @@ namespace Homework_number_42
             }
         }
 
-        private bool TryGetBook(out Book book, string title, string messageError = null)
+        private bool TryGetBook(out Book book, string title)
         {
             book = null;
 
@@ -176,11 +170,6 @@ namespace Homework_number_42
 
                     return true;
                 }
-            }
-
-            if (messageError != null)
-            {
-                ShowMessage(messageError, ConsoleColor.Red);
             }
 
             return false;
@@ -215,13 +204,6 @@ namespace Homework_number_42
             }
 
             return number;
-        }
-
-        private bool ContainsId(string title)
-        {
-            Book book;
-
-            return TryGetBook(out book, title);
         }
     }
 }
