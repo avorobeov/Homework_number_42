@@ -28,7 +28,7 @@ namespace Homework_number_42
                            $"3) Что бы показать весь список книг нажмите: {CommandShowBooks}\n\n" +
                            $"4) Что бы показать список книг по году выпуска нажмите: {CommandShowBooksToYear}\n\n" +
                            $"5) Что бы показать список книг по одному автору нажмите: {CommandShowBooksToAuthor}\n\n" +
-                           $"6) Удалить игрока ведите {CommandExit}\n\n" +
+                           $"6) Для того что бы закрыть приложение нажмите {CommandExit}\n\n" +
                            $"Укажите команду: ");
 
                 userInput = Console.ReadLine();
