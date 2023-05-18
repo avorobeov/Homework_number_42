@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Homework_number_42
 {
     internal class Program
     {
-        const string СommandAdd = "1";
-        const string CommandRemove = "2";
-        const string CommandShowBooks = "3";
-        const string CommandShowBooksToYear = "4";
-        const string CommandShowBooksToAuthor = "5";
-        const string CommandExit = "6";
         static void Main(string[] args)
         {
+            const string СommandAdd = "1";
+            const string CommandRemove = "2";
+            const string CommandShowBooks = "3";
+            const string CommandShowBooksToYear = "4";
+            const string CommandShowBooksToAuthor = "5";
+            const string CommandExit = "6";
+
             Repository repository = new Repository();
 
             bool isExit = false;
